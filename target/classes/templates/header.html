@@ -11,7 +11,8 @@
 		<a th:href="@{/index}">ホーム</a>
 		<a th:href="@{/recipes/search}">検索</a>
 		<a th:href="@{/recipe/add}">記事新規登録</a>
-		<a th:href="@{/login}">ログイン</a>
+			<span th:if="${#authorization.expression('isAuthenticated()')}"><a href="/logout">ログアウト</a></span>
+		<span th:if="${#authorization.expression('!isAuthenticated()')}"><a th:href="@{/login}">ログイン</a></span>
 		 <hr>
 	</header>
 </body>

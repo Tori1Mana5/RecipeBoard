@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -35,6 +36,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
             	.defaultSuccessUrl("/index")
             	.permitAll()
+            .and().logout()
+         // ログアウト処理
+            	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            // ログアウト成功時の遷移先
+            .logoutSuccessUrl("/login")
+            // ログアウト時に削除するクッキー名
+            .deleteCookies("JSESSIONID")
+            // ログアウト時のセッション破棄を有効化
+            .invalidateHttpSession(true)
+            .permitAll()
         // end
         ;
     }
