@@ -39,13 +39,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and().logout()
          // ログアウト処理
             	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            // ログアウト成功時の遷移先
-            .logoutSuccessUrl("/login")
-            // ログアウト時に削除するクッキー名
-            .deleteCookies("JSESSIONID")
-            // ログアウト時のセッション破棄を有効化
-            .invalidateHttpSession(true)
-            .permitAll()
+            	// ログアウト成功時の遷移先
+            	.logoutSuccessUrl("/login")
+            	// ログアウト時に削除するクッキー
+            	.deleteCookies("SESSION", "JSESSIONID")
+            	// ログアウト時のセッション破棄を有効化
+            	.invalidateHttpSession(true)
+            	.permitAll()
         // end
         ;
     }
