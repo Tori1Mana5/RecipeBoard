@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>検索</title>
+</head>
+<body>
+	<header th:replace="header::header"></header>
+	<div th:fragment="search">
+		<form th:action="@{/recipes/search}" method="post">
+			<table>
+				<tbody>
+					<tr>
+						<td>タイトル</td>
+						<td>
+							<input type="text" name="title">
+						</td>
+					</tr>
+					<tr>
+						<td>記事本文内容</td>
+						<td>
+							<input type="text" name="article">
+						</td>
+					</tr>
+					<tr>
+						<td>アカウント名</td>
+						<td>
+							<input type="text" name="acount">
+						</td>
+					</tr>
+					<tr>
+						<td>投稿年月日</td>
+						<td><input type="date" name="date_from"> ~ <input type="date" name="date_to"></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td><button type="submit">検索</button></td>
+					</tr>
+				</tfoot>
+			</table>
+		</form>
+		<hr>
+		<article th:each="recipe : ${list}">
+			<h1 th:text="${recipe.article_title}"></h1>
+			<p>投稿時間：<span th:text="${recipe.create_time}"></span></p>
+			<p>更新時間：<span th:text="${recipe.update_time}"></span></p>
+			<p th:text="${recipe.article_body}"></p>
+			<a th:href="@{recipe/add?id={article_id}(article_id=${recipe.article_id})}">編集</a>
+			<a th:href="@{/delete?id={article_id}(article_id=${recipe.article_id})}">削除</a>
+		</article>
+	</div>
+</body>
+</html>
