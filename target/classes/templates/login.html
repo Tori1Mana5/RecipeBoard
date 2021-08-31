@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <title>ログイン</title>
 <meta name="description" content="みんなの作っている料理を見てみよう">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+<header th:replace="header::header"></header>
 <form th:action="@{/authenticate}" method="post">
 	<div>
 		<h1>ログイン</h1>
@@ -14,7 +16,7 @@
 		<p>パスワード</p>
 		<input type="password" name="password">
 	</div>
-	<button type="submit">ログイン</button>
+	<button class="btn btn-outline-primary my-1" type="submit">ログイン</button>
 </form>
 <a href="/registrationForm">アカウント登録</a>
 </body>

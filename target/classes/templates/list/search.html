@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="header::head(~{::title})">
 <meta charset="UTF-8">
 <title>検索</title>
 </head>
@@ -35,7 +35,7 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<td><button type="submit">検索</button></td>
+						<td><button class="btn btn-outline-primary my-1" type="submit">検索</button></td>
 					</tr>
 				</tfoot>
 			</table>
