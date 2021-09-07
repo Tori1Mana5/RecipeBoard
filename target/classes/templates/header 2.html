@@ -5,15 +5,14 @@
 <title th:replace="${title}">title</title>
 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
 <script th:src="@{/js/dialog.js}" defer="defer"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 	<header th:fragment="header">
 		<a th:href="@{/index}">ホーム</a>
 		<a th:href="@{/recipes/search}">検索</a>
 		<a th:href="@{/recipe/add}">記事新規登録</a>
-		<form action="@{/logout}" method="post">
-			<span th:if="${#authorization.expression('isAuthenticated()')}"><a th:href="@{/logout}">ログアウト</a></span>
-		</form>
+		<span th:if="${#authorization.expression('isAuthenticated()')}"><a href="/logout">ログアウト</a></span>
 		<span th:if="${#authorization.expression('!isAuthenticated()')}"><a th:href="@{/login}">ログイン</a></span>
 		 <hr>
 	</header>

@@ -9,7 +9,7 @@
 	<div>
 		<form th:action="@{/recipe/create}" th:object="${recipesForm}" method="post">
 			<div th:insert="create/form"></div>
-			<button type="submit">投稿</button>
+			<button class="btn btn-outline-primary my-1" type="submit">投稿</button>
 		</form>
 	</div>
 </body>
