@@ -3,6 +3,8 @@ package com.board.recipes.models;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -15,6 +17,8 @@ public class RecipesForm {
 	@NotBlank
 	@Size(min=1, max=200)
 	private String article;
+
+	private MultipartFile multipartFile;
 
 	private Integer article_id;
 

@@ -20,6 +20,9 @@
 					<input type="text" name="article" th:value="*{article}">
 					<span th:if="${#fields.hasErrors('article')}" th:errors="*{article}"></span>
 				</td>
+				<td>
+					<input type="file" name="multipartFile" th:value="*{multipartFile}">
+				</td>
 			</tr>
 		</table>
 		<input type="hidden" name="article_id" th:value="*{article_id}">
