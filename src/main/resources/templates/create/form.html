@@ -21,7 +21,7 @@
 					<span th:if="${#fields.hasErrors('article')}" th:errors="*{article}"></span>
 				</td>
 				<td>
-					<input type="file" name="multipartFile" th:value="*{multipartFile}">
+					<input type="file" name="multipartFile" th:value="*{multipartFile}" accept="image/*">
 				</td>
 			</tr>
 		</table>
