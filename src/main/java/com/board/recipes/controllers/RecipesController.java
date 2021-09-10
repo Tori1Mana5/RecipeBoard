@@ -2,6 +2,7 @@ package com.board.recipes.controllers;
 
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,8 @@ public class RecipesController {
 
 	@Autowired
 	RecipesService service;
+
+	private static final Logger log = Logger.getLogger(RecipesController.class);
 
 	@GetMapping("/index")
 	public String index(Model model) {

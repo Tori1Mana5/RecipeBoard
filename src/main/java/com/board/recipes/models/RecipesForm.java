@@ -18,7 +18,7 @@ public class RecipesForm {
 	@Size(min=1, max=200)
 	private String article;
 
-	private MultipartFile multipartFile;
+	private MultipartFile fileDate;
 
 	private Integer article_id;
 
