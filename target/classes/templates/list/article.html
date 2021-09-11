@@ -12,7 +12,7 @@
 		<p>投稿時間：<span th:text="${#dates.format(recipe.create_time, 'yyyy年MM月dd日 HH時mm分')}"></span></p>
 		<p>更新時間：<span th:text="${#dates.format(recipe.update_time, 'yyyy年MM月dd日 HH時mm分')}"></span></p>
 		<p th:text="${recipe.article_body}"></p>
-		<a th:href="@{recipe/add?id={article_id}(article_id=${recipe.article_id})}">[ 編 集 ]</a>
+		<a th:href="@{recipes/add?id={article_id}(article_id=${recipe.article_id})}">[ 編 集 ]</a>
 		<a th:href="@{/delete?id={article_id}(article_id=${recipe.article_id})}">[ 削 除 ]</a>
 	</article>
 </body>

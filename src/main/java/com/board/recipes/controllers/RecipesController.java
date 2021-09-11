@@ -83,7 +83,7 @@ public class RecipesController {
 	public String Createpost(@Validated RecipesForm form, BindingResult result, Model model) {
 		log.info(form.getFileDate().getName() + "," + form.getFileDate().getSize());
 		if(result.hasErrors()) {
-			return getAdd(null, form, model);
+			return "redirect:/recipes/add";
 		}
 		//idがある場合は該当の記事の編集を実行
 		if(form.getArticle_id() == null) {

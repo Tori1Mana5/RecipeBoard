@@ -20,13 +20,15 @@
 					<input type="text" name="article" th:value="*{article}">
 					<span th:if="${#fields.hasErrors('article')}" th:errors="*{article}"></span>
 				</td>
+			</tr>
+			<tr>
+				<td>投稿画像</td>
 				<td>
 					<input type="file" name="fileDate" th:value="*{fileDate}" accept="image/*">
 				</td>
 			</tr>
 		</table>
 		<input type="hidden" name="article_id" th:value="*{article_id}">
-		<span th:if="${#fields.hasErrors('article_id')}" th:errors="*{article_id}"></span>
 		<input type="hidden" name="user_id" th:value="*{user_id}">
 	</div>
 </body>
