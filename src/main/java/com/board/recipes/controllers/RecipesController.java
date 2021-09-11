@@ -2,7 +2,6 @@ package com.board.recipes.controllers;
 
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.board.recipes.models.RecipesForm;
 import com.board.recipes.services.RecipesService;
+import com.sun.istack.logging.Logger;
 
 @Controller
 public class RecipesController {
@@ -66,7 +66,7 @@ public class RecipesController {
 		return "redirect:/recipes/search";
 	}
 
-	@GetMapping("recipe/add")
+	@GetMapping("recipes/add")
 	public String getAdd(@RequestParam(name="id", defaultValue = "") Integer articleId,
 			RecipesForm form, Model model) {
 			List<Map<String, Object>> list = service.detailviewRecipe(articleId);
@@ -81,6 +81,7 @@ public class RecipesController {
 	}
 	@PostMapping("recipe/create")
 	public String Createpost(@Validated RecipesForm form, BindingResult result, Model model) {
+		log.info(form.getFileDate().getName() + "," + form.getFileDate().getSize());
 		if(result.hasErrors()) {
 			return getAdd(null, form, model);
 		}
