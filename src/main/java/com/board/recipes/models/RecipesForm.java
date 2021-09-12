@@ -1,4 +1,6 @@
 package com.board.recipes.models;
+//検索、記事登録フォームで入力された値を格納するクラス
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
