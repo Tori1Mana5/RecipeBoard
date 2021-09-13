@@ -1,21 +1,16 @@
 package com.board.recipes.models;
-//検索、記事登録フォームで入力された値を格納するクラス
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
-
+//記事投稿フォームで入力された内容を格納するクラス
 @Data
 public class RecipesForm {
 
-	@NotNull
 	@Size(min=1, max=30)
 	private String title;
 
-	@NotNull
 	@Size(min=1, max=200)
 	private String article;
 

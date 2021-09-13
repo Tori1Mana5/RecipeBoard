@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>アカウント登録</title>
@@ -14,7 +14,8 @@
                 アカウント名：
         </td>
         <td>
-                <input type="text" th:field="*{userName}">
+                <input type="text" name="accountName" th:field="*{accountName}">
+                <span th:if="${#fields.hasErrors('accountName')}" th:errors="*{accountName}"></span>
         </td>
     </tr>
     <tr>
@@ -22,7 +23,8 @@
                 パスワード：
         </td>
         <td>
-                <input type="password" th:field="*{password}">
+                <input type="password" name="password" th:field="*{password}">
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
         </td>
     <tr>
         <td>
