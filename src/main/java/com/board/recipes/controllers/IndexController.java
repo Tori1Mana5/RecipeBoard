@@ -22,7 +22,7 @@ public class IndexController {
 	 * 会員情報入力画面に遷移する。
 	 */
 	@RequestMapping("/registrationForm")
-	public String showRegistMemberForm(Model model) {
+	public String showRegistMemberForm(Model model,  MemberRegistrationForm memberRegistrationForm) {
 
 		model.addAttribute(new MemberRegistrationForm());
 
@@ -34,13 +34,13 @@ public class IndexController {
 	 * アカウント登録
 	 */
 	@RequestMapping("/register")
-	public String registerUser(@Validated @ModelAttribute MemberRegistrationForm memberRegistrationForm,
+	public String registerUser(@ModelAttribute @Validated MemberRegistrationForm memberRegistrationForm,
 			BindingResult result, Model model) {
 
 		//未入力バリデーション
 		if(result.hasErrors()) {
 			System.out.println("test");
-			return showRegistMemberForm(model);
+			return showRegistMemberForm(model, memberRegistrationForm);
 		}
 		//USERテーブルにinsertする時の引数。
 		MemberRegistrationEntity entity = new MemberRegistrationEntity();
