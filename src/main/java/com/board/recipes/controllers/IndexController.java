@@ -24,8 +24,6 @@ public class IndexController {
 	@RequestMapping("/registrationForm")
 	public String showRegistMemberForm(Model model,  MemberRegistrationForm memberRegistrationForm) {
 
-		model.addAttribute(new MemberRegistrationForm());
-
 		//会員情報入力画面。
 		return "registrationForm";
 	}
@@ -37,6 +35,8 @@ public class IndexController {
 	public String registerUser(@ModelAttribute @Validated MemberRegistrationForm memberRegistrationForm,
 			BindingResult result, Model model) {
 
+		System.out.println("アカウント名" + memberRegistrationForm.getAccountName());
+		System.out.println("パスワード" + memberRegistrationForm.getPassword());
 		//未入力バリデーション
 		if(result.hasErrors()) {
 			System.out.println("test");

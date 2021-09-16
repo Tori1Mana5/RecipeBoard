@@ -8,7 +8,7 @@
 <body>
 <header class="page-header" th:replace="header::header"></header>
 <h1>アカウント登録</h1>
-<form th:action="@{/register}" th:object="${memberRegistrationForm}" method="POST">
+<form th:action="@{/register}" th:object="${memberRegistrationForm}" method="post">
 <table align="center">
     <tr>
         <td>
@@ -16,7 +16,7 @@
         </td>
         <td>
                 <input type="text" name="accountName" th:field="*{accountName}">
-                <span th:if="${#fields.hasErrors('accountName')}" th:errors="*{accountName}"></span>
+                <span th:if="${#fields.hasErrors('accountName')}" th:errors="*{accountName}">出るよ</span>
         </td>
     </tr>
     <tr>
@@ -24,8 +24,8 @@
                 パスワード：
         </td>
         <td>
-                <input type="password" name="accountName" th:field="*{password}">
-                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                <input type="password" name="password" th:field="*{password}">
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">ですよ</span>
         </td>
 
     <tr>
@@ -35,9 +35,12 @@
             <button class="btn btn-outline-primary my-1" type="submit">登録</button>
         </td>
     </tr>
-
+	<tr>
+		<td>
+			<a th:href="@{/login}">[戻 る]</a>
+		</td>
+	</tr>
 </table>
 </form>
-<a th:href="@{/login}">[戻 る]</a>
 </body>
 </html>
