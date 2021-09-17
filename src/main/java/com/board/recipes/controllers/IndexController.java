@@ -35,11 +35,8 @@ public class IndexController {
 	public String registerUser(@ModelAttribute @Validated MemberRegistrationForm memberRegistrationForm,
 			BindingResult result, Model model) {
 
-		System.out.println("アカウント名" + memberRegistrationForm.getAccountName());
-		System.out.println("パスワード" + memberRegistrationForm.getPassword());
-		//未入力バリデーション
+		//未入力・文字数バリデーション
 		if(result.hasErrors()) {
-			System.out.println("test");
 			return showRegistMemberForm(model, memberRegistrationForm);
 		}
 		//USERテーブルにinsertする時の引数。

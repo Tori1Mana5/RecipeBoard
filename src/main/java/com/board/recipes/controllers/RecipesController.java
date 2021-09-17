@@ -1,9 +1,14 @@
 package com.board.recipes.controllers;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -29,6 +34,16 @@ public class RecipesController {
 
 	@GetMapping("/index")
 	public String index(Model model) {
+		SecurityContext context = SecurityContextHolder.getContext();
+		Authentication authentication = context.getAuthentication();
+		String username = authentication.getName();
+		Object principal = authentication.getPrincipal();
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+
+		System.out.println("アカウント名" + username);
+		System.out.println("主要なデータ" + principal);
+		System.out.println(authorities);
+
 		List<Map<String, Object>> list = service.searchRecipesAll();
 		model.addAttribute("recipes_list", list);
 		return "index";
@@ -44,6 +59,16 @@ public class RecipesController {
 	@GetMapping("/view")
 	public String view(@RequestParam(name="id", defaultValue = "") Integer articleId,
 			Model model) {
+
+		SecurityContext context = SecurityContextHolder.getContext();
+		Authentication authentication = context.getAuthentication();
+		String username = authentication.getName();
+		Object principal = authentication.getPrincipal();
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+
+		System.out.println("記事詳細を見ているアカウント名" + username);
+
+
 		List<Map<String, Object>> list = service.detailviewRecipe(articleId);
 		model.addAttribute("list", list);
 		return "list/article";
