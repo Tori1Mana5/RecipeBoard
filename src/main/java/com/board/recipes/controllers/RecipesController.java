@@ -59,17 +59,14 @@ public class RecipesController {
 	@GetMapping("/view")
 	public String view(@RequestParam(name="id", defaultValue = "") Integer articleId,
 			Model model) {
-
+		//ログインユーザーと記事の投稿者のuser_idが合っているのかを確認する
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
 		String username = authentication.getName();
-		Object principal = authentication.getPrincipal();
-		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
 		System.out.println("記事詳細を見ているアカウント名" + username);
 
-
 		List<Map<String, Object>> list = service.detailviewRecipe(articleId);
+		System.out.println(list);
 		model.addAttribute("list", list);
 		return "list/article";
 	}
@@ -90,11 +87,18 @@ public class RecipesController {
 		System.out.println(list);
 		return "redirect:/recipes/search";
 	}
-
+	//新規登録時と既存の記事の編集で分岐する
 	@GetMapping("recipes/add")
 	public String getAdd(@RequestParam(name="id", defaultValue = "") Integer articleId,
 			RecipesForm form, Model model) {
+			//ログインしたアカウントユーザーのidを投稿記事に紐つける
 			List<Map<String, Object>> list = service.detailviewRecipe(articleId);
+			SecurityContext context = SecurityContextHolder.getContext();
+			Authentication authentication = context.getAuthentication();
+			String username = authentication.getName();
+			System.out.println(username);
+			form.setUser_id(username);
+			//既存の記事の場合は書かれている内容を編集できるようにする
 			if(!CollectionUtils.isEmpty(list)) {
 				System.out.println(list);
 				form.setArticle_id(articleId);
@@ -107,6 +111,7 @@ public class RecipesController {
 	@PostMapping("recipe/create")
 	public String Createpost(@Validated RecipesForm form, BindingResult result, Model model) {
 		log.info(form.getFileDate().getName() + "," + form.getFileDate().getSize());
+		System.out.println("投稿者は" + form.getUser_id());
 		if(result.hasErrors()) {
 			return getAdd(null, form, model);
 		}

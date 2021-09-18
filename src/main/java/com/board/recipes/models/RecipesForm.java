@@ -18,7 +18,7 @@ public class RecipesForm {
 
 	private Integer article_id;
 
-	private Integer user_id;
+	private String user_id;
 
 	private String acount;
 
