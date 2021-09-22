@@ -76,11 +76,11 @@ public class RecipesController {
 		return "login";
 	}
 
-	@GetMapping("recipes/search")
+	@GetMapping("/recipes/search")
 	public String getList() {
 		return "list/search";
 	}
-	@PostMapping("recipes/search")
+	@PostMapping("/recipes/search")
 	public String postArticle(RedirectAttributes attr, RecipesForm form) {
 		List<Map<String, Object>> list = service.searchRecipes(form);
 		attr.addFlashAttribute("list", list);
@@ -88,7 +88,7 @@ public class RecipesController {
 		return "redirect:/recipes/search";
 	}
 	//新規登録時と既存の記事の編集で分岐する
-	@GetMapping("recipes/add")
+	@GetMapping("/recipes/add")
 	public String getAdd(@RequestParam(name="id", defaultValue = "") Integer articleId,
 			RecipesForm form, Model model) {
 			//ログインしたアカウントユーザーのidを投稿記事に紐つける
@@ -109,7 +109,7 @@ public class RecipesController {
 		return "create/add";
 	}
 
-	@PostMapping("recipe/create")
+	@PostMapping("/recipe/create")
 	public String Createpost(@Validated RecipesForm form, BindingResult result, Model model) {
 		log.info(form.getFileDate().getName() + "," + form.getFileDate().getSize());
 		System.out.println("投稿者は" + form.getUser_id());
