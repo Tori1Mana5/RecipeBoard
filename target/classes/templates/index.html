@@ -9,7 +9,7 @@
 <body>
 	<header class="page-header" th:replace="header::header"></header>
 	<div>
-		<h1 ><span th:text="${#authentication.name}"></span>さん、ようこそ!<br>料理投稿サイトへ!!</h1>
+		<h1 ><span th:if="${#authorization.expression('isAuthenticated()')}" th:text="${#authentication.name} + 'さん、'"></span>ようこそ!<br>料理投稿サイトへ!!</h1>
 	</div>
 	<div d-inline-flex p-2 bd-highlight>
 		<article th:each="recipe : ${recipes_list}">
