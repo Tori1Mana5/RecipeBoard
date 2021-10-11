@@ -12,8 +12,8 @@
 		<p>投稿時間：<span th:text="${#dates.format(recipe.create_time, 'yyyy年MM月dd日 HH時mm分')}"></span></p>
 		<p>更新時間：<span th:text="${#dates.format(recipe.update_time, 'yyyy年MM月dd日 HH時mm分')}"></span></p>
 		<p th:text="${recipe.article_body}"></p>
-		<span><a th:href="@{recipes/add?id={article_id}(article_id=${recipe.article_id})}">[ 編 集 ]</a></span>
-		<span><a th:href="@{/delete?id={article_id}(article_id=${recipe.article_id})}">[ 削 除 ]</a></span>
+		<span><a th:if="${#authentication.name} == ${recipe.user_id}" th:href="@{recipes/add?id={article_id}(article_id=${recipe.article_id})}">[ 編 集 ]</a></span>
+		<span><a th:if="${#authentication.name} == ${recipe.user_id}" th:href="@{/delete?id={article_id}(article_id=${recipe.article_id})}">[ 削 除 ]</a></span>
 	</article>
 </body>
 </html>
